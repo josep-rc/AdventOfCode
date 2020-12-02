@@ -9,50 +9,27 @@ namespace ex002
         {
             string filePath = "/Users/joseppenalba/dev/katas/adventofcode/aoc2020/ex002/input.webarchive";
             string[] inputdata = DataFromFile.GetLines<string>(filePath);
-
-            int num1;
-            int num2;
-            char car;
-            string code;
-            string snum2;
-            int minusPos;
-            int spacePos;
+            Predicate<TobogganCode> validator = ValidatorStar2;
             int validCounter = 0;
-            bool validCode;
-            bool pos1IsCharacter;
-            bool pos2IsCharacter;
+            TobogganCode tcode;
 
             foreach (string line in inputdata)
             {
-                // Obtengo el código
-                minusPos = line.IndexOf("-");
-                num1 = int.Parse(line.Substring(0, minusPos));
-
-                spacePos = line.IndexOf(" ", minusPos);
-                snum2 = line.Substring(minusPos + 1, spacePos - minusPos);
-                num2 = int.Parse(snum2);
-
-                car = line.Substring(spacePos + 1, 1)[0];
-
-                code = line.Substring(spacePos + 4);
-
-                // Valido el código
-
-
-                pos1IsCharacter = false;
-                pos2IsCharacter = false;
-                validCode = false;
-                pos1IsCharacter = code[num1 - 1] == car;
-                pos2IsCharacter = code[num2 - 1] == car;
-
-                validCode = pos1IsCharacter ^ pos2IsCharacter;
-
-                if (validCode) validCounter++;
-
-
-                //Console.WriteLine($"{num1}+{num2}+{car}+{code}+{pos1IsCharacter}+{pos2IsCharacter}+{validCode}");
+                tcode = new TobogganCode(line);
+                if (tcode.isValid(ValidatorStar2)) validCounter++;
             }
-            Console.WriteLine(validCounter);
+            Console.WriteLine("Num. Star2 valid codes: " + validCounter);
+        }
+
+        static bool ValidatorStar2(TobogganCode item)
+        {
+            bool pos1IsCharacter;
+            bool pos2IsCharacter;
+
+            pos1IsCharacter = item.Code[item.Num1 - 1] == item.Letter;
+            pos2IsCharacter = item.Code[item.Num2 - 1] == item.Letter;
+
+            return pos1IsCharacter ^ pos2IsCharacter;
         }
     }
 }

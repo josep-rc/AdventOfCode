@@ -9,50 +9,28 @@ namespace ex002
         {
             string filePath = "/Users/joseppenalba/dev/katas/adventofcode/aoc2020/ex002/input.webarchive";
             string[] inputdata = DataFromFile.GetLines<string>(filePath);
-
-            int num1;
-            int num2;
-            char car;
-            string code;
-            string snum2;
-            int minusPos;
-            int spacePos;
+            Predicate<TobogganCode> validator = ValidatorStar1;
             int validCounter = 0;
-            bool validCode;
-            int charTimes;
+            TobogganCode tcode;
             foreach (string line in inputdata)
             {
-                // Obtengo el código
-                minusPos = line.IndexOf("-");
-                num1 = int.Parse(line.Substring(0, minusPos));
-
-                spacePos = line.IndexOf(" ", minusPos);
-                snum2 = line.Substring(minusPos + 1, spacePos - minusPos);
-                num2 = int.Parse(snum2);
-
-                car = line.Substring(spacePos + 1, 1)[0];
-
-                code = line.Substring(spacePos + 4);
-
-                // Valido el código
-
-                // Contamos las veces que aparece el caracter
-                charTimes = 0;
-                validCode = false;
-                foreach (char c in code)
-                {
-                    if (c == car) charTimes++;
-                }
-
-                if (charTimes >= num1 && charTimes <= num2) validCode = true;
-
-
-                if (validCode) validCounter++;
-
-
-                //Console.WriteLine($"{num1}+{num2}+{car}+{code}+{charTimes}+{validCode}");
+                tcode = new TobogganCode(line);
+                if (tcode.isValid(ValidatorStar1)) validCounter++;
             }
-            Console.WriteLine(validCounter);
+            Console.WriteLine("Num. Star1 valid codes: " + validCounter);
+        }
+
+        static bool ValidatorStar1(TobogganCode item)
+        {
+            int letterTimes = 0;
+            bool validCode = false;
+            foreach (char c in item.Code)
+            {
+                if (c == item.Letter) letterTimes++;
+            }
+            if (letterTimes >= item.Num1 && letterTimes <= item.Num2) validCode = true;
+
+            return validCode;
         }
     }
 }

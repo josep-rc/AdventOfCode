@@ -51,5 +51,13 @@ namespace AOC.Utils
       }
       return (0, 0, 0);
     }
+    
+    // Verifica si el caracter character se encuetra en la posición
+    // position dentro del pattern (el pattern se repite lo necesario)
+    public static bool IsCharacterInPatternPosition(char character, int position, string pattern)
+    {
+      var realPos = position - (pattern.Length *(position/pattern.Length));
+      return pattern[realPos] == character;
+    }
   }
 }

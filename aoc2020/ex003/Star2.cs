@@ -41,13 +41,7 @@ namespace ex003
             for(var i = jumpY; i<inputdata.Length; i = i+jumpY)
             {
                 currentX += jumpX;
-
-                while (currentX >= inputdata[i].Length)
-                {
-                    inputdata[i] += inputdata[i];
-                }
-                
-                if (inputdata[i][currentX] == '#') numTrees++;
+                if (DataFinder.IsCharacterInPatternPosition('#', currentX, inputdata[i])) numTrees++;
             }
             
             

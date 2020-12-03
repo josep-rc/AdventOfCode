@@ -3,7 +3,7 @@ using AOC.Utils;
 
 namespace ex002
 {
-    public class Star2
+    public static class Star2
     {
         public static void Run()
         {

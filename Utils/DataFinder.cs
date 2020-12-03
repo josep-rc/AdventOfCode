@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace AOC.Utils
+﻿namespace AOC.Utils
 {
-  public class DataFinder
+  public static class DataFinder
   {
 
     // Busca en la lista dos números que sumados den expectedResult
@@ -11,9 +9,9 @@ namespace AOC.Utils
       int operand1;
       int operand2;
 
-      for (int i = 0; i < numList.Length; i++)
+      for (var i = 0; i < numList.Length; i++)
       {
-        for (int y = 0; y < numList.Length; y++)
+        for (var y = 0; y < numList.Length; y++)
         {
           if (numList[i] + numList[y] == expectedResult)
           {
@@ -33,11 +31,11 @@ namespace AOC.Utils
       int operand2;
       int operand3;
 
-      for (int i = 0; i < numList.Length; i++)
+      for (var i = 0; i < numList.Length; i++)
       {
-        for (int y = 0; y < numList.Length; y++)
+        for (var y = 0; y < numList.Length; y++)
         {
-          for (int x = 0; x < numList.Length; x++)
+          for (var x = 0; x < numList.Length; x++)
           {
             if (numList[i] + numList[y] + numList[x] == expectedResult)
             {

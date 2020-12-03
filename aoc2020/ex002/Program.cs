@@ -2,22 +2,22 @@
 
 namespace ex002
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             Star1.Run();
             Star2.Run();
 
             // Code validation example
-            TobogganCode tc = new TobogganCode("4-5 x: xdxlfx");
+            var tc = new TobogganCode("4-5 x: xdxlfx");
             Console.WriteLine(tc);
             Predicate<TobogganCode> validator = Validator1;
-            Console.WriteLine(tc.isValid(validator));
+            Console.WriteLine(tc.IsValid(validator));
         }
 
         // Example validator
-        static bool Validator1(TobogganCode item)
+        private static bool Validator1(TobogganCode item)
         {
             return true;
         }
@@ -26,10 +26,10 @@ namespace ex002
     // 4-5 x: xdxlfx
     public class TobogganCode
     {
-        public int Num1 { get; init; }
-        public int Num2 { get; init; }
-        public char Letter { get; init; }
-        public string Code { get; init; }
+        public int Num1 { get; private init; }
+        public int Num2 { get; private init; }
+        public char Letter { get; private init; }
+        public string Code { get; private init; }
 
         public TobogganCode(string sourceLine)
         {
@@ -40,7 +40,7 @@ namespace ex002
             Code = parts[4];
         }
 
-        public bool isValid(Predicate<TobogganCode> validator)
+        public bool IsValid(Predicate<TobogganCode> validator)
         {
             return validator(this);
         }

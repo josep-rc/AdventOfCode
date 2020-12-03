@@ -7,29 +7,27 @@ namespace ex002
     {
         public static void Run()
         {
-            string filePath = "/Users/joseppenalba/dev/katas/adventofcode/aoc2020/ex002/input.webarchive";
-            string[] inputdata = DataFromFile.GetLines<string>(filePath);
-            Predicate<TobogganCode> validator = ValidatorStar1;
-            int validCounter = 0;
+            const string filePath = "/Users/joseppenalba/dev/katas/adventofcode/aoc2020/ex002/input.webarchive";
+            var inputdata = DataFromFile.GetLines<string>(filePath);
+            var validCounter = 0;
             TobogganCode tcode;
-            foreach (string line in inputdata)
+            foreach (var line in inputdata)
             {
                 tcode = new TobogganCode(line);
-                if (tcode.isValid(ValidatorStar1)) validCounter++;
+                if (tcode.IsValid(ValidatorStar1)) validCounter++;
             }
             Console.WriteLine("Num. Star1 valid codes: " + validCounter);
         }
 
-        static bool ValidatorStar1(TobogganCode item)
+        private static bool ValidatorStar1(TobogganCode item)
         {
-            int letterTimes = 0;
-            bool validCode = false;
-            foreach (char c in item.Code)
+            var letterTimes = 0;
+            var validCode = false;
+            foreach (var c in item.Code)
             {
                 if (c == item.Letter) letterTimes++;
             }
             if (letterTimes >= item.Num1 && letterTimes <= item.Num2) validCode = true;
-
             return validCode;
         }
     }

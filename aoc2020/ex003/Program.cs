@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace ex003
+﻿namespace ex003
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             Star1.Run();
             Star2.Run();

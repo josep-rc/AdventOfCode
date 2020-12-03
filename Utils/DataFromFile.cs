@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace AOC.Utils
 {
@@ -19,12 +18,12 @@ namespace AOC.Utils
             }
             return (T[])(object)fileData.ToArray();
 
-            int[] DataToInteger(IEnumerable<string> data)
+            static int[] DataToInteger(IEnumerable<string> data)
             {
                 var dataSize = data.Count();
-                int[] values = new int[dataSize];
-                int i = 0;
-                foreach (string s in data)
+                var values = new int[dataSize];
+                var i = 0;
+                foreach (var s in data)
                 {
                     values[i] = int.Parse(s);
                     i++;

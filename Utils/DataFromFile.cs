@@ -31,5 +31,10 @@ namespace AOC.Utils
                 return values;
             }
         }
+
+        public static string Get(string filePath)
+        {
+            return File.ReadAllText(filePath);
+        }
     }
 }

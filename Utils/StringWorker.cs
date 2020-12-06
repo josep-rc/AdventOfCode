@@ -36,32 +36,22 @@ namespace AOC.Utils
             var personResponse = input.Split("\n");
             var repeated = personResponse[0];
             var toErase = "";
-            
             if (personResponse.Length > 1)
             {
                 // For every line except the first
                 for (var index = 1; index < personResponse.Length; index++)
                 {
                     // We check that it has each character of the repeated ones
-                    for (var i = 0; i < personResponse[0].Length; i++)
+                    for (var i = 0; i < repeated.Length; i++)
                     {
                         // If current character is not in repeated
                         if (!personResponse[index].Contains(repeated[i]))
                         {
-                            // We put it to erase
-                            toErase += repeated[i];
+                            // We delete it
+                            repeated = repeated.Remove(i, 1);
+                            i--;
                         }
                     }
-                }
-            }
-
-            // we delete the ones on the toErase list
-            for (var i = 0; i < repeated.Length; i++)
-            {
-                if (toErase.Contains(repeated[i]))
-                {
-                    repeated = repeated.Remove(i, 1);
-                    i--;
                 }
             }
             return ListPresentCharacters(repeated);

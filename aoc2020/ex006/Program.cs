@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using AOC.Utils;
 
@@ -28,6 +27,7 @@ namespace ex006
             Console.WriteLine(counterStar1);
             Console.WriteLine(counterStar2);
         }
+        
         private static int CountNotRepeatedCharacters(string group)
         {
             var response = "";
@@ -43,6 +43,7 @@ namespace ex006
             }
             return response.Length;
         }
+        
         private static int CountEveryoneYes(string @group)
         {
             var personResponse = group.Split("\n");

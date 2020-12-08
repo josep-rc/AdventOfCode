@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security;
 using AOC.Utils;
 
 namespace ex008
@@ -11,18 +13,25 @@ namespace ex008
         // result star2: 1000
         public static void Main()
         {
+            var sw = new Stopwatch();
+            sw.Start();
+            
             const string filePath = "/Users/joseppenalba/dev/katas/adventofcode/aoc2020/ex008/input.txt";
-
             var inputData = DataFromFile.GetLines<string>(filePath);
             
+            Console.WriteLine("Time elapsed reading file: {0}", sw.ElapsedMilliseconds);
+            
+            sw.Restart();
             // Guardamos los datos en una lista de tuplas (instruccion, valor, repeticiones)
             var originalData = getCommandsFromData(inputData);
-
+            Console.WriteLine("Time elapsed creating list: {0}", sw.ElapsedMilliseconds);
+            sw.Stop();
+            
             // Star 1
             // Ejecutamos
             (int Result, bool Last, bool Over) star1Result = ExecuteProgram(originalData);
             Console.WriteLine(star1Result.Result + " " + star1Result.Last + " " + star1Result.Over);
-            
+
             // Para Star2
             // Vamos a recorrer data cambiando instrucciones jmp por nop y nop por jmp
             // (una cada vez) hasta que encontremos la manera de que el programa finalice
@@ -66,6 +75,7 @@ namespace ex008
         {
             return origin.Select(id => new Command(id)).ToList();
         }
+        
         private static (int, bool, bool) ExecuteProgram(List<Command> data)
         {
             // ejecuto hasta que la instrucción a ejecutar tenga ya una repeticion

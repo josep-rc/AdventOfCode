@@ -82,54 +82,41 @@ namespace ex008
                 if (command.Repeticiones > 0) break; // si ya se ha ejecutado nos salimos
                 
                 // ejecutar la instrucción actual;
-                if (command.Instruccion == "acc")
+                switch (command.Instruccion)
                 {
-                    star1Count += command.Operacion;
-                    command.Repeticiones++;
-                    currentIndex++;
-                    if (currentIndex > data.Count - 1)
-                    {
-                        // ultima instruccion ejecutada
-                        lastExecuted = true;
-                        break;
-                    }
-                    continue;
-                }
-
-                if (command.Instruccion == "jmp")
-                {
-                    // si nos vamos a salir
-                    if (currentIndex+command.Operacion > data.Count)
-                    {
-                        // el programa nos manda mas allá de la última instrucción
-                        sobrepasado = true;
-                    }
-                    else
-                    {
-                        currentIndex += command.Operacion;
+                    case "acc":
+                        star1Count += command.Operacion;
                         command.Repeticiones++;
-                        if (currentIndex > data.Count - 1)
+                        currentIndex++;
+                        break;
+                    case "jmp":
+                        // si nos vamos mas alla del fin de los datos
+                        if (currentIndex+command.Operacion > data.Count)
                         {
-                            // ultima instruccion ejecutada
-                            lastExecuted = true;
-                            break;
+                            sobrepasado = true;
                         }
-                        continue;
-                    }
+                        else
+                        {
+                            currentIndex += command.Operacion;
+                            command.Repeticiones++;
+                        }
+                        break;
+                    case "nop":
+                        currentIndex++;
+                        command.Repeticiones++;
+                        break;
                 }
 
-                if (command.Instruccion == "nop")
+                if (currentIndex>data.Count-1)
                 {
-                    currentIndex++;
-                    command.Repeticiones++;
-                    // si nos salimos
-                    if (currentIndex > data.Count - 1)
-                    {
-                        // ultima instruccion ejecutada
-                        lastExecuted = true;
-                        break;
-                    }
+                    lastExecuted = true;
                 }
+
+                if (lastExecuted || sobrepasado)
+                {
+                    break;
+                }
+                
             }
             return (star1Count, lastExecuted, sobrepasado);
         }

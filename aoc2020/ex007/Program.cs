@@ -20,11 +20,8 @@ namespace ex007
             // input.txt: 378
             // example.txt: 9
             // example2.txt: 0
-            int totalStar1 = 0;
-            var initialList = new List<string>();
-            var indexAdded = new List<int>();
-            initialList.Add("shiny gold");
-            findBags(initialList, fileData, indexAdded, totalStar1);
+            var star1Result = GetCountColorsDeepConatainColor("shiny gold", fileData);
+            Console.WriteLine("Star1 result: " + star1Result);
             
             // Star2
             // How many individual bags are required inside your single shiny gold bag?
@@ -38,7 +35,17 @@ namespace ex007
             getChildBags(initList, fileData, totalStar2);
         }
 
-        private static List<string> findBags(List<string> bags, string[] fullList, List<int> addeds,int totalStar1)
+
+        private static int GetCountColorsDeepConatainColor(string color, string[] data)
+        {
+            var totalStar1 = 0;
+            var initialList = new List<string>();
+            var indexAdded = new List<int>();
+            initialList.Add(color);
+            findBags(initialList, data, indexAdded, ref totalStar1);
+            return totalStar1;
+        }
+        private static List<string> findBags(List<string> bags, string[] fullList, List<int> addeds,ref int totalStar1)
         {
             var finded = new List<string>();
             var findCounter = 0;
@@ -68,10 +75,9 @@ namespace ex007
             totalStar1 += findCounter;
             if (findCounter == 0)
             {
-                Console.WriteLine("Star1: " + totalStar1);
                 return finded;
             }
-            return findBags(finded, fullList, addeds, totalStar1);
+            return findBags(finded, fullList, addeds, ref totalStar1);
         }
 
         private static List<(string, int)> getChildBags(List<(string, int)> parent, string[] fullList, int totalStar2)
@@ -111,7 +117,7 @@ namespace ex007
                 }
                 return getChildBags(result, fullList, totalStar2);
             }
-            Console.WriteLine("Star2: " + totalStar2);
+            Console.WriteLine("Star2 result: " + totalStar2);
             return result;
         }
     }

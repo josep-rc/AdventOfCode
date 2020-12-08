@@ -4,6 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>AOC.UtilsTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Utils\Utils.csproj" />
+      <ProjectReference Include="..\..\Utils\Utils.csproj" />
     </ItemGroup>
 
 </Project>

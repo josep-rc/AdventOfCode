@@ -89,10 +89,9 @@ namespace ex005
         {
             var selectedLow = 0;
             var selectedHigh = numRows - 1; // 127
-            var range = 0;
             foreach (var charCode in rowCode)
             {
-                range = selectedHigh - selectedLow;
+                var range = selectedHigh - selectedLow;
                 if (charCode == 'F')
                 {
                     selectedHigh -= range / 2;

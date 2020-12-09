@@ -35,7 +35,6 @@ namespace AOC.Utils
         {
             var personResponse = input.Split("\n");
             var repeated = personResponse[0];
-            var toErase = "";
             if (personResponse.Length > 1)
             {
                 // For every line except the first

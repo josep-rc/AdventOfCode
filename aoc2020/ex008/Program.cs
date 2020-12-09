@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Security;
 using AOC.Utils;
 
 namespace ex008
@@ -23,7 +22,7 @@ namespace ex008
             
             sw.Restart();
             // Guardamos los datos en una lista de tuplas (instruccion, valor, repeticiones)
-            var originalData = getCommandsFromData(inputData);
+            var originalData = GetCommandsFromData(inputData);
             Console.WriteLine("Time elapsed creating list: {0}", sw.ElapsedMilliseconds);
             sw.Stop();
             
@@ -39,7 +38,7 @@ namespace ex008
             for (var index = 0; index < originalData.Count; index++)
             {
                 var command = originalData[index];
-                var copyData = getCommandsFromData(inputData);
+                var copyData = GetCommandsFromData(inputData);
                 var instruccionCambiada = false;
                 
                 if (command.Instruccion == "jmp")
@@ -71,7 +70,7 @@ namespace ex008
 
         // Devuelva una lista con los comandos extraidos del
         // array de string origin
-        private static List<Command> getCommandsFromData(string[] origin)
+        private static List<Command> GetCommandsFromData(string[] origin)
         {
             return origin.Select(id => new Command(id)).ToList();
         }

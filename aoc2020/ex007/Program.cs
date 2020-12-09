@@ -32,7 +32,7 @@ namespace ex007
             int totalStar2 = 0;
             var initList = new List<(string, int)>();
             initList.Add(("shiny gold", 1));
-            getChildBags(initList, fileData, totalStar2);
+            GetChildBags(initList, fileData, totalStar2);
         }
 
 
@@ -42,10 +42,10 @@ namespace ex007
             var initialList = new List<string>();
             var indexAdded = new List<int>();
             initialList.Add(color);
-            findBags(initialList, data, indexAdded, ref totalStar1);
+            FindBags(initialList, data, indexAdded, ref totalStar1);
             return totalStar1;
         }
-        private static List<string> findBags(List<string> bags, string[] fullList, List<int> addeds,ref int totalStar1)
+        private static List<string> FindBags(List<string> bags, string[] fullList, List<int> addeds,ref int totalStar1)
         {
             var finded = new List<string>();
             var findCounter = 0;
@@ -77,10 +77,10 @@ namespace ex007
             {
                 return finded;
             }
-            return findBags(finded, fullList, addeds, ref totalStar1);
+            return FindBags(finded, fullList, addeds, ref totalStar1);
         }
 
-        private static List<(string, int)> getChildBags(List<(string, int)> parent, string[] fullList, int totalStar2)
+        private static List<(string, int)> GetChildBags(List<(string, int)> parent, string[] fullList, int totalStar2)
         {
             var result = new List<(string, int)>();
             if (parent.Count > 0)
@@ -115,7 +115,7 @@ namespace ex007
                         }
                     }
                 }
-                return getChildBags(result, fullList, totalStar2);
+                return GetChildBags(result, fullList, totalStar2);
             }
             Console.WriteLine("Star2 result: " + totalStar2);
             return result;
